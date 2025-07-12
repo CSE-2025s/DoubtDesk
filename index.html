@@ -16,30 +16,35 @@
     body {
       background-color: #f4f6fc;
       color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     header {
       background-color: #1f3b57;
       color: white;
-      padding: 20px 40px;
+      padding: 20px;
       text-align: center;
     }
 
     header h1 {
-      font-size: 2.2rem;
+      font-size: 2rem;
     }
 
     nav {
       background-color: #2b5278;
-      padding: 10px 20px;
+      padding: 10px 5px;
       text-align: center;
+      flex-wrap: wrap;
     }
 
     nav a {
       color: white;
-      margin: 0 10px;
+      margin: 5px 10px;
       text-decoration: none;
       font-weight: 500;
+      display: inline-block;
     }
 
     nav a:hover {
@@ -47,7 +52,9 @@
     }
 
     main {
-      max-width: 800px;
+      flex: 1;
+      max-width: 900px;
+      width: 95%;
       margin: auto;
       padding: 20px;
     }
@@ -98,6 +105,7 @@
 
     .answer-input {
       display: flex;
+      flex-wrap: wrap;
       margin-top: 10px;
       gap: 10px;
     }
@@ -106,17 +114,26 @@
       flex: 1;
       padding: 8px;
       font-size: 14px;
+      min-width: 200px;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 15px;
       background-color: #1f3b57;
       color: white;
-      margin-top: 50px;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      nav a {
+        display: block;
+        margin: 8px 0;
+      }
+
       .answer-input {
         flex-direction: column;
       }
@@ -162,7 +179,7 @@
   </main>
 
   <footer>
-    <p>Made by CSE | &copy; 2025 DoubtDesk</p>
+    <p>Made with ❤️ by the DoubtDesk Team | &copy; 2025 DoubtDesk</p>
   </footer>
 
   <script>

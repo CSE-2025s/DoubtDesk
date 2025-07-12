@@ -3,125 +3,139 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DoubtDesk - Clear Your Doubts</title>
+  <title>DoubtDesk - Ask & Answer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Inter', sans-serif;
     }
 
     body {
-      background-color: #f4f6fc;
-      color: #333;
-      min-height: 100vh;
+      background-color: #f7faff;
+      color: #222;
       display: flex;
       flex-direction: column;
+      min-height: 100vh;
     }
 
     header {
-      background-color: #1f3b57;
-      color: white;
-      padding: 20px;
+      background-color: #003b73;
+      color: #fff;
+      padding: 1.5rem 1rem;
       text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
 
     header h1 {
       font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
     }
 
     nav {
-      background-color: #2b5278;
-      padding: 10px 5px;
+      background-color: #004e98;
+      padding: 0.8rem;
       text-align: center;
-      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     nav a {
       color: white;
-      margin: 5px 10px;
+      margin: 0 12px;
       text-decoration: none;
       font-weight: 500;
-      display: inline-block;
+      transition: color 0.3s;
     }
 
     nav a:hover {
-      text-decoration: underline;
+      color: #ffeb3b;
     }
 
     main {
       flex: 1;
       max-width: 900px;
-      width: 95%;
-      margin: auto;
-      padding: 20px;
+      width: 90%;
+      margin: 2rem auto;
     }
 
-    .ask-section, .about, .doubt-list {
-      margin-top: 30px;
+    .card {
       background: white;
-      padding: 20px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    }
+
+    .card h2 {
+      margin-bottom: 1rem;
+      color: #003b73;
     }
 
     textarea, input[type="text"] {
       width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      font-size: 16px;
-      border-radius: 6px;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      font-size: 1rem;
       border: 1px solid #ccc;
+      border-radius: 6px;
     }
 
     button {
-      padding: 10px 20px;
-      background-color: #1f3b57;
+      padding: 0.6rem 1.2rem;
+      background-color: #003b73;
       color: white;
       border: none;
       border-radius: 6px;
+      font-weight: bold;
       cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #00509e;
     }
 
     .doubt-card {
-      background-color: #fff;
-      margin-top: 20px;
-      padding: 15px;
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: #f1f4f8;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .doubt-card p {
-      font-size: 1.1rem;
     }
 
     .answers {
       margin-top: 10px;
-      padding-left: 15px;
+      padding-left: 1rem;
+      font-size: 0.95rem;
     }
 
     .answer-input {
       display: flex;
       flex-wrap: wrap;
-      margin-top: 10px;
       gap: 10px;
+      margin-top: 10px;
     }
 
     .answer-input input {
       flex: 1;
-      padding: 8px;
-      font-size: 14px;
       min-width: 200px;
+      padding: 0.5rem;
+      font-size: 0.95rem;
     }
 
     footer {
       text-align: center;
-      padding: 15px;
-      background-color: #1f3b57;
+      padding: 1rem;
+      background-color: #003b73;
       color: white;
+      font-size: 0.9rem;
     }
 
     @media (max-width: 768px) {
@@ -130,8 +144,8 @@
       }
 
       nav a {
-        display: block;
-        margin: 8px 0;
+        display: inline-block;
+        margin: 6px;
       }
 
       .answer-input {
@@ -142,7 +156,7 @@
 </head>
 <body>
   <header>
-    <h1><i class="fas fa-graduation-cap"></i> DoubtDesk</h1>
+    <h1><i class="fas fa-circle-question"></i> DoubtDesk</h1>
   </header>
 
   <nav>
@@ -159,27 +173,27 @@
   </nav>
 
   <main>
-    <section class="about">
-      <h2>About DoubtDesk</h2>
-      <p>DoubtDesk is a platform where students can ask their doubts and help each other by answering them. Created for collaboration and peer support.</p>
-    </section>
+    <div class="card">
+      <h2>Welcome to DoubtDesk</h2>
+      <p>Here, you can ask your academic doubts and help others by answering. Let's build a collaborative learning space together!</p>
+    </div>
 
-    <section class="ask-section">
-      <h2>Ask Your Doubt</h2>
+    <div class="card">
+      <h2>Ask a Doubt</h2>
       <form id="doubtForm">
         <input type="text" id="nameInput" placeholder="Your name (optional)" />
         <textarea id="doubtInput" placeholder="Type your doubt here..." required></textarea>
         <button type="submit">Post Doubt</button>
       </form>
-    </section>
+    </div>
 
-    <section class="doubt-list" id="doubtList">
+    <div class="card" id="doubtList">
       <h2>All Doubts</h2>
-    </section>
+    </div>
   </main>
 
   <footer>
-    <p>Made with ❤️ by the DoubtDesk Team | &copy; 2025 DoubtDesk</p>
+    <p>&copy; 2025 DoubtDesk | Made with 💙 for student learning | <a href="#" style="color:#ffeb3b; text-decoration: underline;">Contact</a></p>
   </footer>
 
   <script>

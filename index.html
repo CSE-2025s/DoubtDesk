@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DoubtDesk - Clear Your Doubts</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f4f6fc;
+      color: #333;
+    }
+
+    header {
+      background-color: #1f3b57;
+      color: white;
+      padding: 20px 40px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+    }
+
+    nav {
+      background-color: #2b5278;
+      padding: 10px 20px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .ask-section, .about, .doubt-list {
+      margin-top: 30px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    textarea, input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #1f3b57;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .doubt-card {
+      background-color: #fff;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .doubt-card p {
+      font-size: 1.1rem;
+    }
+
+    .answers {
+      margin-top: 10px;
+      padding-left: 15px;
+    }
+
+    .answer-input {
+      display: flex;
+      margin-top: 10px;
+      gap: 10px;
+    }
+
+    .answer-input input {
+      flex: 1;
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1f3b57;
+      color: white;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 600px) {
+      .answer-input {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><i class="fas fa-graduation-cap"></i> DoubtDesk</h1>
+  </header>
+
+  <nav>
+    <a href="#">Maths 1</a>
+    <a href="#">Maths 2</a>
+    <a href="#">Physics</a>
+    <a href="#">Chemistry</a>
+    <a href="#">BEEE</a>
+    <a href="#">PFP</a>
+    <a href="#">PPS</a>
+    <a href="#">EDG</a>
+    <a href="#">Economics</a>
+    <a href="#">English</a>
+  </nav>
+
+  <main>
+    <section class="about">
+      <h2>About DoubtDesk</h2>
+      <p>DoubtDesk is a platform where students can ask their doubts and help each other by answering them. Created for collaboration and peer support.</p>
+    </section>
+
+    <section class="ask-section">
+      <h2>Ask Your Doubt</h2>
+      <form id="doubtForm">
+        <input type="text" id="nameInput" placeholder="Your name (optional)" />
+        <textarea id="doubtInput" placeholder="Type your doubt here..." required></textarea>
+        <button type="submit">Post Doubt</button>
+      </form>
+    </section>
+
+    <section class="doubt-list" id="doubtList">
+      <h2>All Doubts</h2>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made by CSE | &copy; 2025 DoubtDesk</p>
+  </footer>
+
+  <script>
+    const doubtForm = document.getElementById('doubtForm');
+    const doubtInput = document.getElementById('doubtInput');
+    const nameInput = document.getElementById('nameInput');
+    const doubtList = document.getElementById('doubtList');
+
+    doubtForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const question = doubtInput.value.trim();
+      const name = nameInput.value.trim() || 'Anonymous';
+
+      if (question) {
+        addDoubt(question, name);
+        doubtInput.value = '';
+        nameInput.value = '';
+      }
+    });
+
+    function addDoubt(questionText, userName) {
+      const card = document.createElement('div');
+      card.className = 'doubt-card';
+
+      const question = document.createElement('p');
+      question.innerHTML = `<strong>${userName}:</strong> ${questionText}`;
+      card.appendChild(question);
+
+      const answerSection = document.createElement('div');
+      answerSection.className = 'answers';
+
+      const answerForm = document.createElement('div');
+      answerForm.className = 'answer-input';
+
+      const answerInput = document.createElement('input');
+      answerInput.placeholder = 'Write your answer...';
+
+      const answerBtn = document.createElement('button');
+      answerBtn.textContent = 'Submit';
+
+      answerBtn.addEventListener('click', function () {
+        const ans = answerInput.value.trim();
+        if (ans) {
+          const ansPara = document.createElement('p');
+          ansPara.textContent = `💬 ${ans}`;
+          answerSection.appendChild(ansPara);
+          answerInput.value = '';
+        }
+      });
+
+      answerForm.appendChild(answerInput);
+      answerForm.appendChild(answerBtn);
+
+      card.appendChild(answerForm);
+      card.appendChild(answerSection);
+
+      doubtList.appendChild(card);
+    }
+  </script>
+</body>
+</html>
